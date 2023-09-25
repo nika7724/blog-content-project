@@ -27,3 +27,6 @@
     />
   {/each}
 {/if}
+
+<!-- 
+image={posts.includes["Asset"]} -->
