@@ -1,0 +1,7 @@
+<script>
+  fetch(
+    "https://cdn.contentful.com/spaces/u6uvswtswt0w/environments/master/entries?access_token=op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y"
+  )
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+</script>

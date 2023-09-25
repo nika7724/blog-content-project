@@ -1,0 +1,67 @@
+<script>
+  export let title;
+  export let image;
+  export let alt;
+  export let allHyperlinks;
+  //export let typographical;
+  //export let allImage;
+</script>
+
+<article>
+  <h1>{title}</h1>
+  <p>
+    {#each allHyperlinks as hlink, i}
+      {#if hlink.nodeType === "hyperlink"}
+        <a href={hlink.data.uri}>{hlink.content[0].value}</a>
+      {/if}
+      {#if hlink.nodeType === "text"}
+        {hlink.value}
+      {:else if hlink.marks === "italic"}
+        <u>{hlink.value}</u>
+      {/if}
+    {/each}
+  </p>
+  <div>
+    <img src={image} {alt} />
+  </div>
+
+  <!-- <div>
+    {#each allImage as imageLink, i}
+      {#if imageLink.contentType === "image/jpeg"}
+        <img src={imageLink.url} alt={title} />
+      {/if}
+    {/each}
+  </div> -->
+</article>
+
+<script>
+  import { onMount } from "svelte";
+  import Blog from "./Blog.svelte";
+  const space = "u6uvswtswt0w";
+  const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
+  const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}`;
+  let posts = [];
+
+  onMount(async () => {
+    const response = await fetch(url)
+      .then((response) => response.json()) //json content(promise)
+      .then((result) => (posts = result));
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    console.log(posts);
+  });
+</script>
+
+{#if posts.items}
+  {#each posts.items as _, i}
+    <Blog
+      title={_.fields.title}
+      image={posts.includes["Asset"][0].fields.file.url}
+      alt={_.fields.title}
+      allHyperlinks={_.fields.richText.content[0].content}
+    />
+  {/each}
+{/if}
+
+

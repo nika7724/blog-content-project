@@ -1,0 +1,42 @@
+Different type of API
+https://www.contentful.com/developers/docs/concepts/apis/?utm_source=webapp&utm_medium=knowledge-base-content_apis&utm_campaign=in-app-help
+
+Get or Post
+https://www.baeldung.com/cs/http-get-vs-post#:~:text=GET%20requests%20are%20intended%20to,may%20modify%20the%20server's%20state.
+
+
+Youtube
+basic
+https://www.youtube.com/watch?v=j7p6l4AZ6no
+postman
+https://www.youtube.com/watch?v=LmKK_2AKmm8&t=344s
+
+Javascript call API
+https://www.youtube.com/watch?v=P9W91PsJ2bo
+
+Fetch data from API with Svelte
+https://marketsplash.com/tutorials/svelte/svelte-fetch-data-from-api/
+
+Lesson video (fetch api in svelte)
+https://www.koderhq.com/tutorial/svelte/http-fetch/
+
+
+Use this video(using store, I will use this in the future)
+https://www.youtube.com/watch?time_continue=366&v=xzt-9DSVNtI&embeds_referring_euri=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dcall%2Bapi%2Bsvelte%26sca_esv%3D564283140%26rlz%3D1C1GCEU_enDK1071DK1071%26biw%3D1920%26bih%3D955%26tbm%3Dvid%26sxsrf%3DAB5s&source_ve_path=MTM5MTE3LDEzOTExNywxMzkxMTcsMTM5MTE3LDEzOTExNywxMzkxMTcsMTM5MTE3LDIzODUx&feature=emb_title
+
+Fetch data from an api(useful one and I used it with my syntax)
+https://designcode.io/react-hooks-handbook-fetch-data-from-an-api
+
+
+Fetch svelte api
+https://marketsplash.com/tutorials/svelte/svelte-fetch/
+
+Contentful tutorial
+https://www.contentful.com/developers/videos/contentful-essentials/
+
+
+Simon
+https://simonbucko.github.io/portfolio/
+Simon git
+https://github.com/simonbucko/blog/blob/main/components/PostWidget.jsx
+

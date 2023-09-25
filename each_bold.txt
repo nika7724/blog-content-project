@@ -1,0 +1,15 @@
+ {#each allHyperlinks as hlink, i}
+      {#if hlink.nodeType === "hyperlink"}
+        <a href={hlink.data.uri}>{hlink.content[0].value}</a>
+      {/if}
+      {#each hlink.marks as typo, i}
+        {#if typo.type === "italic"}
+          <i>{hlink.value}</i>
+        {:else if typo.type === "bold"}
+          <b>{hlink.value}</b>
+        {:else if typo.type === "underline"}
+          <u>{hlink.value}</u>
+        {:else if hlink.nodeType === "text"}
+          {hlink.value}
+        {/if}{/each}
+    {/each}

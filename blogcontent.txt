@@ -1,0 +1,36 @@
+/////App.svelte/////
+<script>
+  import BlogContent from "./component/BlogContent.svelte";
+</script>
+
+<BlogContent />
+
+
+//////BlogContents.svelte/////////
+<script>
+  import { onMount } from "svelte";
+  const space = "u6uvswtswt0w";
+  const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
+  let posts = [];
+
+  onMount(async () => {
+    const response = await fetch(
+      `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}` //HTTP response
+    )
+      // data = await response.json();
+      // console.log(data);
+      .then((response) => response.json()) //json content
+      .then((result) => (posts = result));
+    console.log(posts);
+  });
+</script>
+
+<p>{posts}</p>
+
+<!-- <div>
+  {#if posts}
+    <p>{posts}</p>
+  {:else}
+    <p>Loading...</p>
+  {/if}
+</div> -->

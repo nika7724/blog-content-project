@@ -1,0 +1,54 @@
+<script>
+  import { onMount } from "svelte";
+  import app from "../main";
+  const space = "u6uvswtswt0w";
+  const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
+  const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}`;
+  let posts = [];
+  let detail = new Map();
+
+  onMount(async () => {
+    const response = await fetch(url)
+      .then((response) => response.json()) //json content(promise)
+      .then((result) => (posts = result));
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    console.log(posts);
+    detail.set("title", posts.items[0].fields.title);
+    detail.set(
+      "richtext",
+      posts.items[0].fields.richText.content[0].content[0].value
+    );
+    console.log(detail);
+  });
+</script>
+
+<!-- <body>
+  
+  <section class="content">
+    <div class="blockContent">
+      {#if posts.items}
+        <p>{posts.items[0].fields.title}</p>
+        <p>
+          {posts.items[0].fields.richText.content[0].content[0].value}
+          <a
+            href={posts.items[0].fields.richText.content[0].content[1].data.uri}
+          >
+            {posts.items[0].fields.richText.content[0].content[1].content[0]
+              .value}</a
+          >
+          {posts.items[0].fields.richText.content[0].content[2].value}
+        </p>
+        <div class="blockImage">
+          <img
+            src={posts.includes["Asset"][0].fields.file.url}
+            alt={posts.items[0].fields.title}
+          />
+        </div>
+      {:else}
+        <p>Loading...</p>
+      {/if}
+    </div>
+  </section>
+</body> -->

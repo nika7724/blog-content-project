@@ -1,0 +1,19 @@
+<script>
+  const space = "u6uvswtswt0w";
+  const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
+
+  const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}`;
+
+  //Get request
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  fetchData();
+</script>

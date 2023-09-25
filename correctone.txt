@@ -1,0 +1,79 @@
+<script>
+  import { onMount } from "svelte";
+  import Blog from "./Blog.svelte";
+  const space = "u6uvswtswt0w";
+  const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
+  const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}`;
+  let posts = [];
+
+  onMount(async () => {
+    const response = await fetch(url)
+      .then((response) => response.json()) //json content(promise)
+      .then((result) => (posts = result));
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    console.log(posts);
+  });
+</script>
+
+{#if posts.items}
+  {#each posts.items as _, i}
+    <Blog
+      title={_.fields.title}
+      image={posts.includes["Asset"][0].fields.file.url}
+      alt={_.fields.title}
+      allHyperlinks={_.fields.richText.content[0].content}
+    />
+  {/each}
+{/if}
+
+
+<script>
+  export let title;
+  export let image;
+  export let alt;
+  export let allHyperlinks;
+
+  // export let blog;
+</script>
+
+<!-- <article>
+  <h1>{title}</h1>
+  <p>
+    {content}
+    <a href={hyperlinks}>{hyperlinks_content}</a>
+    {content1}
+  </p>
+  <div>
+    <img src={image} {alt} />
+  </div>
+</article> -->
+
+<article>
+  <h1>{title}</h1>
+  {#each allHyperlinks as hlink, i}
+    <p>
+      {#if hlink.nodeType === "hyperlink"}
+        <a href={hlink.data.uri}>{hlink.content[0].value}</a>
+      {/if}
+    c
+    </p>
+  {/each}
+  <div>
+    <img src={image} {alt} />
+  </div>
+</article>
+
+<!-- <article>
+  <h1>{blog.items[0].fields.title}</h1>
+  <p>{blog.items[0].fields.richText.content[0].content[0].value}</p>
+  <div>
+    <img
+      src={blog.includes["Asset"][0].fields.file.url}
+      alt={blog.items[0].fields.title}
+    />
+  </div>
+</article> -->
+
+
