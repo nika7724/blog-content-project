@@ -21,12 +21,16 @@
   {#each posts.items as _, i}
     <Blog
       title={_.fields.title}
-      image={posts.includes["Asset"][0].fields.file.url}
+      image={posts.includes["Asset"]}
       alt={_.fields.title}
       allHyperlinks={_.fields.richText.content}
+      imageItem={posts.items}
     />
   {/each}
 {/if}
 
 <!-- 
-image={posts.includes["Asset"]} -->
+image={posts.includes["Asset"]} 
+      
+
+-->

@@ -3,6 +3,14 @@
   export let image;
   export let alt;
   export let allHyperlinks;
+  export let imageItem;
+
+  //hyper = richtext.content
+  const nodes = [];
+
+  allHyperlinks.forEach((element) => {
+    nodes.push(element.content);
+  });
 </script>
 
 <article>
@@ -44,17 +52,17 @@
   </p>
 
   <!-- image -->
-  <div>
-    <img src={image} {alt} />
-  </div>
-
   <!-- <div>
-    {#each image as imageLink, i}
-      {#if imageLink.fields.file.contentType === "image/jpeg"}
+    <img src={image} {alt} />
+  </div> -->
+
+  {#each image as imageLink, i}
+    {#each imageItem as imageTitle}
+      {#if imageLink.fields.file.contentType === "image/jpeg" && imageLink.sys.id === imageTitle.fields.images.sys.id}
         <img src={imageLink.fields.file.url} alt={title} />
       {/if}
     {/each}
-  </div> -->
+  {/each}
 </article>
 
 <style>
