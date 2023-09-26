@@ -4,13 +4,6 @@
   export let alt;
   export let allHyperlinks;
   export let imageItem;
-
-  //hyper = richtext.content
-  const nodes = [];
-
-  allHyperlinks.forEach((element) => {
-    nodes.push(element.content);
-  });
 </script>
 
 <article>
