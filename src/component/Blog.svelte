@@ -64,4 +64,8 @@
     margin: 0 auto;
     border-radius: 4px;
   }
+
+  p {
+    font-family: "Open Sans", sans-serif;
+  }
 </style>
