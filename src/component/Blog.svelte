@@ -1,9 +1,18 @@
 <script>
   export let title;
   export let image;
-  export let alt;
   export let allHyperlinks;
-  export let imageItem;
+  export let imageId;
+
+  function showImage(arr, id) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === id) {
+        return arr[i].url;
+      }
+    }
+  }
+  let img = showImage(image, imageId.fields.images.sys.id);
+  const imageUrl = img;
 </script>
 
 <article>
@@ -45,17 +54,7 @@
   </p>
 
   <!-- image -->
-  <!-- <div>
-    <img src={image} {alt} />
-  </div> -->
-
-  {#each image as imageLink, i}
-    {#each imageItem as imageTitle}
-      {#if imageLink.fields.file.contentType === "image/jpeg" && imageLink.sys.id === imageTitle.fields.images.sys.id}
-        <img src={imageLink.fields.file.url} alt={title} />
-      {/if}
-    {/each}
-  {/each}
+  <div><img src={imageUrl} alt={title} /></div>
 </article>
 
 <style>

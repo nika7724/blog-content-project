@@ -5,32 +5,31 @@
   const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
   const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}`;
   let posts = [];
+  let assets = [];
 
   onMount(async () => {
-    const response = await fetch(url)
-      .then((response) => response.json()) //json content(promise)
-      .then((result) => (posts = result));
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    console.log(posts);
+    const response = await fetch(url);
+    const res = await response.json();
+    posts = res.items;
+    assets = res.includes.Asset.map((a) => {
+      return {
+        id: a.sys.id,
+        url: a.fields.file.url,
+      };
+    });
+
+    console.log(assets);
+    console.log(res);
   });
 </script>
 
-{#if posts.items}
-  {#each posts.items as _, i}
+{#if posts}
+  {#each posts as post, i}
     <Blog
-      title={_.fields.title}
-      image={posts.includes["Asset"]}
-      alt={_.fields.title}
-      allHyperlinks={_.fields.richText.content}
-      imageItem={posts.items}
+      title={post.fields.title}
+      image={assets}
+      allHyperlinks={post.fields.richText.content}
+      imageId={post}
     />
   {/each}
 {/if}
-
-<!-- 
-image={posts.includes["Asset"]} 
-      
-
--->
