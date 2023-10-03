@@ -1,8 +1,6 @@
 <script>
-  export let title;
-  export let image;
-  export let allHyperlinks;
-  export let imageId;
+  export let title, image, imageId, selectedChunkOfData;
+  let img;
 
   function showImage(arr, id) {
     for (let i = 0; i < arr.length; i++) {
@@ -11,58 +9,67 @@
       }
     }
   }
-  let img = showImage(image, imageId.fields.images.sys.id);
+  img = showImage(image, imageId.fields.images.sys.id);
   const imageUrl = img;
 </script>
 
-<article>
-  <h1>{title}</h1>
-  <p>
-    <!-- hyperlink -->
-    {#each allHyperlinks as hlink, i}
-      {#each hlink.content as paragraph, i}
-        {#if paragraph.nodeType === "hyperlink"}
-          {#each paragraph.content as uriLink}
-            <a href={paragraph.data.uri}>{uriLink.value}</a>
-          {/each}
+<body>
+  <article>
+    <h1>{title}</h1>
+
+    <!-- image -->
+    <div><img src={imageUrl} alt={title} /></div>
+    <p>
+      <!-- hyperlink -->
+      {#each selectedChunkOfData as contents}
+        {#if contents.value_hyperlink?.length >= 0}
+          <a href={contents.url}>{contents.value_hyperlink}</a>
         {/if}
 
         <!-- typography -->
-        {#if paragraph.nodeType === "text" && paragraph.marks.length === 0}
-          {paragraph.value}
-        {:else if paragraph.marks?.length > 0}
-          {#each paragraph.marks as typo}
+        {#if contents.nodeType === "text" && contents.marks?.length === 0}
+          {contents.value}
+        {:else if contents.marks?.length > 0}
+          {#each contents.marks as typo}
             {#if typo.type === "italic"}
-              <i>{paragraph.value}</i>
+              <i>{contents.value}</i>
             {:else if typo.type === "bold"}
-              <b>{paragraph.value}</b>
+              <b>{contents.value}</b>
             {:else if typo.type === "underline"}
-              <u>{paragraph.value}</u>
+              <u>{contents.value}</u>
             {/if}
           {/each}
         {/if}
 
         <!-- list_item -->
-        {#if paragraph.nodeType === "list-item"}
-          {#each paragraph.content as list}
-            {#each list.content as listed_item}
-              <li>{listed_item.value}</li>
-            {/each}
-          {/each}
+        {#if contents.list_value}
+          <li>{contents.list_value}</li>
         {/if}
-      {/each}{/each}
-  </p>
-
-  <!-- image -->
-  <div><img src={imageUrl} alt={title} /></div>
-</article>
+      {/each}
+    </p>
+  </article>
+</body>
 
 <style>
+  /* body {
+    background-color: #f7ddc6;
+  } */
+
+  article {
+    width: 900px;
+    display: block;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
   img {
     width: 900px;
     display: block;
     margin: 0 auto;
     border-radius: 4px;
+    padding-top: 3%;
+    padding-bottom: 5%;
   }
 
   p {

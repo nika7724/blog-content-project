@@ -4,8 +4,11 @@
   const space = "u6uvswtswt0w";
   const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
   const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}`;
-  let posts = [];
-  let assets = [];
+  let posts = [],
+    assets = [],
+    myNiceStruc = [],
+    temp = [],
+    details;
 
   onMount(async () => {
     const response = await fetch(url);
@@ -18,8 +21,32 @@
       };
     });
 
-    console.log(assets);
-    console.log(res);
+    for (let i = 0; i < posts.length; i++) {
+      posts[i].fields.richText.content.forEach((content) => {
+        content.content.forEach((nestedContent) => {
+          temp.push({
+            value: nestedContent.value,
+            nodeType: nestedContent.nodeType,
+            marks: nestedContent.marks,
+          });
+          nestedContent.content?.forEach((nested_Content) => {
+            temp.push({
+              url: nestedContent.data.uri,
+              value_hyperlink: nested_Content.value,
+            });
+            console.log(nested_Content.value);
+            nested_Content.content?.forEach((nest_Content) => {
+              temp.push({
+                list_value: nest_Content.value,
+              });
+            });
+          });
+        });
+      });
+      myNiceStruc.push(temp);
+      temp = [];
+    }
+    details = myNiceStruc;
   });
 </script>
 
@@ -28,8 +55,8 @@
     <Blog
       title={post.fields.title}
       image={assets}
-      allHyperlinks={post.fields.richText.content}
       imageId={post}
+      selectedChunkOfData={details[i]}
     />
   {/each}
 {/if}
