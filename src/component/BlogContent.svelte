@@ -34,7 +34,6 @@
               url: nestedContent.data.uri,
               value_hyperlink: nested_Content.value,
             });
-            console.log(nested_Content.value);
             nested_Content.content?.forEach((nest_Content) => {
               temp.push({
                 list_value: nest_Content.value,

@@ -15,6 +15,10 @@
 
 <body>
   <article>
+    <!-- <div class="header">
+    <img src 
+    </div> -->
+
     <h1>{title}</h1>
 
     <!-- image -->
@@ -56,23 +60,25 @@
   } */
 
   article {
-    width: 900px;
+    width: 750px;
     display: block;
-    margin: 0 auto;
+    margin: auto;
     background-color: #ffffff;
     padding-left: 5%;
     padding-right: 5%;
   }
   img {
-    width: 900px;
+    width: 750px;
+    height: 400px;
     display: block;
-    margin: 0 auto;
-    border-radius: 4px;
-    padding-top: 3%;
-    padding-bottom: 5%;
+    margin: auto;
+    border-radius: 1px;
+    padding-top: 1%;
   }
 
   p {
     font-family: "Open Sans", sans-serif;
+    padding-bottom: 10%;
+    line-height: 30px;
   }
 </style>
