@@ -19,7 +19,7 @@
     <img src 
     </div> -->
 
-    <h1>{title}</h1>
+    <h3>{title}</h3>
 
     <!-- image -->
     <div><img src={imageUrl} alt={title} /></div>
@@ -63,7 +63,7 @@
     width: 750px;
     display: block;
     margin: auto;
-    background-color: #ffffff;
+    background-color: #f7ddc6;
     padding-left: 5%;
     padding-right: 5%;
   }
@@ -78,7 +78,12 @@
 
   p {
     font-family: "Open Sans", sans-serif;
-    padding-bottom: 10%;
+    padding-bottom: 6%;
     line-height: 30px;
+  }
+
+  h3 {
+    font-family: "Open Sans", sans-serif;
+    padding-top: 6%;
   }
 </style>
