@@ -3,7 +3,7 @@
   import Blog from "./Blog.svelte";
   const space = "u6uvswtswt0w";
   const token = "op_g9tDEMCcJl-NkDpfDOejOkJ4LDvrfo-yAqWqYF4Y";
-  const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}&metadata.tags.sys.id[in]=news`;
+  const url = `https://cdn.contentful.com/spaces/${space}/environments/master/entries?access_token=${token}&metadata.tags.sys.id[in]=product`;
   let posts = [],
     assets = [],
     myNiceStruc = [],

@@ -18,11 +18,17 @@
     <!-- <div class="header">
     <img src 
     </div> -->
-
     <h3>{title}</h3>
 
     <!-- image -->
     <div><img src={imageUrl} alt={title} /></div>
+
+    <!-- {#if imageId.fields.images.sys.id.length === " "}
+      
+    {:else}
+      <div><img src={imageUrl} alt={title} /></div>
+    {/if} -->
+
     <p>
       <!-- hyperlink -->
       {#each selectedChunkOfData as contents}
@@ -67,6 +73,7 @@
     padding-left: 5%;
     padding-right: 5%;
   }
+
   img {
     width: 750px;
     height: 400px;

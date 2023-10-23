@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^16.1.2",
-    "contentful": "^10.5.1"
+    "contentful": "^10.5.1",
+    "svelte-routing": "^2.5.0"
   }
 }
